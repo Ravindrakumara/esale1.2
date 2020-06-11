@@ -1,0 +1,10 @@
+<h2>testing database</h2>
+{% block content %}
+{% for Item in object_list %}
+<img src="{{Item.Image.url}}" style="width: 270px; height:255px;" alt="Hello" / >
+<H1>{{Item.id}}</H1>
+<H2>{{Item.Item_Name}}</H2>
+<a href="{{ Item.get_absolute_url }}"><h1> RS:{{Item.Price}}</h1></a>
+<a href=""><h3> Add to cart</h3></a>
+{% endfor %}
+{% endblock %}

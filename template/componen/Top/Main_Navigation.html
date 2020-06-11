@@ -1,0 +1,86 @@
+{% load static %}
+
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+
+                            <li><a href="#"><i class="fa fa-phone"></i> {{Registration.Phonenumber}}</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> {{object.Email}}</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">{%block Nav%}
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="/"><img src="{{Registration.Logo.url}}" alt="DJ ESHOP" /></a>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                    	{% if request.user.is_authenticated %}
+                        <ul class="nav navbar-nav">
+                            <li><a href="{% url 'products:order-summary' %}"><span class="badge red z-depth-1 mr-1"><i class="fa fa-shopping-cart"></i> 
+                             {{ order.items.count }}</span> </a>
+                            </li>
+                            <li><a href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+                         {% else %}
+                         	<li><a href="{% url 'account_login' %}"><i class="fa fa-key"></i> Login</a></li>
+                         	
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+    <!--/header-middle-->
+    {% block head%}
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="{% url 'products:product' %}">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="search_box pull-right">
+                        <input type="text" placeholder="Search" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-bottom-->
+    {%endblock%}
+</header>

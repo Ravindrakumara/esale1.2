@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{%block head_title%} Shop | E-Shopper{%endblock%}
+
+{% block body %}
+
+    
+   
+    {% block content %}
+
+    	<section id="cart_items">
+		<div class="container">
+			
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<th scope="col">#</th>
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>{% for order_item in object.items.all %}
+						
+						<tr><th scope="row">{{ forloop.counter }}</th>
+							<td class="cart_product">
+								<a href=""><img src="{{ order_item.iteml.Image.url }}" style="width:110px; height:110px;" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{ order_item.iteml.title }}</a></h4>
+								<p>{{Item.Colour}}</p>
+							</td>
+							<td class="cart_price">
+								<p>{{ order_item.iteml.Price }}
+								</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button"> 
+									<a class="cart_quantity_up" href="{% url 'products:add-to-cart' order_item.iteml.slug %}"> + </a>
+									{{ order_item.quantity }}
+									<a class="cart_quantity_down" href="{% url 'products:remove-single-item-from-cart' order_item.iteml.slug %}"> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price"> 
+                                  {% if order_item.iteml.Discount %}
+                						${{ order_item.get_total_discount_item_price }}
+                               <span class="badge badge-primary">Saving ${{ order_item.get_amount_saved }}</span>
+            						{% else %}
+                						${{ order_item.get_total_item_price }}
+            						{% endif %}
+								</p>
+							</td>
+
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" style='color: red;' href="{% url 'products:remove-from-cart' order_item.iteml.slug %}"><i class="fa fa-times"></i></a>
+							</td>
+							
+						</tr>{% endfor %}
+
+
+						{% if object.get_total %}
+						<tr>
+            				<td colspan="4"><b>Order Total</b></td>
+            				<td><b>$ 400.00{{ object.get_total }}</b></td>
+        				</tr>
+                          {% endif %}
+						<tr>
+            				<td colspan="5">
+            				 <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+            				 <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            				</td>
+        				</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+    {% endblock %}
+
+    {% endblock %}
+
+    {% block extra_body %}
+    {% endblock %}
+
