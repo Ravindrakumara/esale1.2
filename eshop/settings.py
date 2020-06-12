@@ -22,9 +22,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '533m3qre030$4w3spe4ou+eee1v9^t9qe%$08ys0t%4#1^b$qbuak'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://ravi-esale1-2.herokuapp.com']
 
 
 # Application definition
@@ -73,17 +73,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'debug': DEBUG,
+            #'debug': DEBUG,
         },
     },
 ]
 
 WSGI_APPLICATION = 'eshop.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+#RDS Postgresql DB 11.2V
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -135,11 +132,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #---------------------------------------------
 MEDIA_URL = '/pics/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "pics")
 #---------------------------------------------
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Auth---------------------------
 
