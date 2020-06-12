@@ -24,7 +24,7 @@ SECRET_KEY = '533m3qre030$4w3spe4ou+eee1v9^t9qe%$08ys0t%4#1^b$qbuak'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.ravi-esale1-2.herokuapp.com']
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
