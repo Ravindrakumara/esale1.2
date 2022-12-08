@@ -3,7 +3,7 @@ awsebcli==3.18.1
 boto3==1.13.16
 botocore==1.15.49
 cement==2.8.2
-certifi==2020.4.5.1
+certifi==2022.12.7
 chardet==3.0.4
 colorama==0.4.3
 defusedxml==0.6.0
